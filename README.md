@@ -1,7 +1,7 @@
 # gitSklep
 Aplikacja e-commerce w Django
 
-Baza Danych:
+Baza Danych (PostgresSQL):
     Nazwa: 'ecommerce',
     User: 'postgres',
     Hasło: 'postgres',
