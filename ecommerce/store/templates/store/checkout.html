@@ -1,0 +1,82 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+
+    <h1>Checkout</h1>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="box-element">
+                <form id="form">
+
+                    <div id="user-info" class="user-info">
+                        <p>User information:</p>
+
+                        <div class="form-field">
+                            <input class="form-control" type="text" name="name" placeholder="Enter your name" required/>
+                        </div>
+
+                        <div class="form-field">
+                            <input class="form-control" type="email" name="email" placeholder="Enter your email" required/>
+                        </div>
+                    </div>
+
+                    <div id="shipping-info" class="shipping-info">
+                        <p>Shipping information:</p>
+
+                        <div class="form-field">
+                            <input class="form-control" type="text" name="address" placeholder="Address" required/>
+                        </div>
+
+                        <div class="form-field">
+                            <input class="form-control" type="text" name="city" placeholder="City" required/>
+                        </div>
+
+                        <div class="form-field">
+                            <input class="form-control" type="text" name="state" placeholder="State" required/>
+                        </div>
+
+                        <div class="form-field">
+                            <input class="form-control" type="text" name="zipcode" placeholder="Zip code" required/>
+                        </div>
+
+                        <div class="form-field">
+                            <input class="form-control" type="text" name="country" placeholder="Country" required/>
+                        </div>
+                    </div>
+
+                    <input id="form-button" class="btn btn-dark form-button" type="submit" value="Submit"/> 
+                </form>
+            </div>
+
+            <br>
+            <div class="box-element hidden" id="payment-info">
+                <small>Payment options:</small>
+            </div>
+
+        </div>
+
+        <div class="col-lg-6">
+            <div class="box-element">
+                <a class="btn btn-outline-dark" href="{% url 'cart' %}">Back to cart</a>
+                <hr>
+                <h4>Order sumary:</h4>
+                {% for item in items %}
+                <div class="cart-row">
+                    <div style="flex:2">
+                        <img class="zdj" src="{{ item.product.imageURL }}"/>
+                    </div>
+                    <div style="flex:2">{{ item.product.name }}</div>
+                    <div style="flex:2">{{ item.product.price | floatformat:2 }} PLN</div>
+                    <div style="flex:2">{{ item.quantity }}</div>
+                </div>
+                {% endfor %}
+                <h5>Items: <strong> {{ order.get_cart_items }} </strong></h5>
+                <h5>Total: <strong> {{ order.get_cart_total }} PLN</strong></h5>
+
+            </div>
+        </div>
+    </div>
+    
+{% endblock content %}
